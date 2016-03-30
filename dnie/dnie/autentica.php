@@ -6,7 +6,6 @@
         <link rel="stylesheet" type="text/css" href="css/style.css">
     </head>
 
-
     <body>
         <div id='banner'>
             
@@ -47,8 +46,9 @@
                     die('No se ha enviado el usuario');
                 }
             }
-			
-			//tenemos que crear un autentica , donde tenemos que hacer el hash y comprobar que coincide con el hash que se ha enviado con uno de los parametros. si coincide entra y sino no entra.
+			//tenemos que crear un nuevo fichero autenticaMAC
+			//tenemos que usar un solo metodo de http-get o post-
+			//Donde tenemos que hacer el hash y comprobar que coincide con el hash que se ha enviado con uno de los parametros. si coincide entra y sino no entra.
             
              $link = mysql_connect('localhost:3306', 'root', '12345') or die('No se puede conectar con el servidor'); //consulta a la base de datos
                 if (!$link) {

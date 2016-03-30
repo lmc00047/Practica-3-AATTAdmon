@@ -44,7 +44,7 @@ public class ObtenerDatos {
             CardChannel ch = c.getBasicChannel();
 
             if (esDNIe(atr)) {
-                nif = leerDeCertificado(ch); //le pasamos nombre, nif y apellidos. creamos el usuario
+                nif = leerDeCertificado(ch); //le tenemos que pasar el nombre, el nif y los apellidos Y además creamos el usuario lmorenoc
             }
             c.disconnect(false);
 
