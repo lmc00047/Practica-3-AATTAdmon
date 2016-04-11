@@ -33,7 +33,7 @@ public class ObtenerDatos {
     public ObtenerDatos() {
     }
 
-    public String LeerNIF() { 
+    public String LeerNIF() {
         String nif = null;
         try {
             Card c = ConexionTarjeta();
@@ -44,7 +44,7 @@ public class ObtenerDatos {
             CardChannel ch = c.getBasicChannel();
 
             if (esDNIe(atr)) {
-                nif = leerDeCertificado(ch); //le tenemos que pasar el nombre, el nif y los apellidos Y además creamos el usuario lmorenoc
+                nif = leerDeCertificado(ch);
             }
             c.disconnect(false);
 
@@ -60,6 +60,7 @@ public class ObtenerDatos {
     public String leerDeCertificado(CardChannel ch) throws CardException {
         int offset = 0;
         String completName = null;
+        String nombre= null;
 
         byte[] command = new byte[]{(byte) 0x00, (byte) 0xa4, (byte) 0x04, (byte) 0x00, (byte) 0x0b, (byte) 0x4D, (byte) 0x61, (byte) 0x73, (byte) 0x74, (byte) 0x65, (byte) 0x72, (byte) 0x2E, (byte) 0x46, (byte) 0x69, (byte) 0x6C, (byte) 0x65};
         ResponseAPDU r = ch.transmit(new CommandAPDU(command));
@@ -104,21 +105,27 @@ public class ObtenerDatos {
 
             if ((byte) datos[offset] == (byte) 0xA1) {
                 //El certificado empieza aquí
-                byte[] r3 = new byte[9];
-
-                
+                byte[] r3 = new byte[20];
+                byte[] r4 = new byte[50];
+                byte[] r5 = new byte[50];
+     
                 
                 
                 //Nos posicionamos en el byte donde empieza el NIF y leemos sus 9 bytes
-                for (int z = 0; z < 9; z++) {
-                    r3[z] = datos[109 + z];
+                for (int z = 0; z < 9; z++) { //lee el dni
+                    r3[z] = datos[110 + z];
                 }
+                for (int z = 0; z < 20; z++) {
+                    r4[z] = datos[140 + z];
+                }
+                for (int z = 0; z < 40; z++) {
+                    r5[z] = datos[160 + z];
+                }
+                nombre= new String(r4) + new String(r5);
                 completName = new String(r3);
-				
-				//modificar para poner nombres y apellidos y creamos el usuario. Devolvemos no solo el nif , sino el nombre y apellidos.
             }
         }
-        return completName;
+        return nombre;
     }
 
    
@@ -131,7 +138,7 @@ public class ObtenerDatos {
      * @return objeto Card con conexión establecida
      * @throws Exception
      */
-    private Card ConexionTarjeta() throws Exception { //terminada
+    private Card ConexionTarjeta() throws Exception {
 
         Card card = null;
         TerminalFactory factory = TerminalFactory.getDefault();
@@ -164,7 +171,7 @@ public class ObtenerDatos {
      * @return tipo de la tarjeta. 1 si es DNIe, 2 si es Starcos y 0 para los
      * demás tipos
      */
-    private boolean esDNIe(byte[] atrCard) { //terminada
+    private boolean esDNIe(byte[] atrCard) {
         int j = 0;
         boolean found = false;
 
