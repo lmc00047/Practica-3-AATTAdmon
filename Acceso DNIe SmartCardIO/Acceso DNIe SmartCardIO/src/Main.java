@@ -1,18 +1,24 @@
 
 
 
+import static java.awt.SystemColor.text;
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 //import java.io.UnsupportedEncodingException;
 //import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Scanner;
 import org.bouncycastle.util.encoders.Base64;
 
 //import java.util.logging.Formatter;
@@ -48,11 +54,11 @@ public class Main {
         return sb.toString();
     }
 
-public static String cifrarBase64(String a){
-        Base64.Encoder encoder = Base64.getEncoder();
-        String b = encoder.encodeToString(a.getBytes(StandardCharsets.UTF_8) );        
-        return b;
-    }
+//public static String cifrarBase64(String a){
+      // Base64 encoder = Base64.getEncoder();
+      //  String b = encoder.encodeToString(a.getBytes(StandardCharsets.UTF_8) );        
+      //  return b;
+   // }
     public static void main(String[] args) throws Exception{
         //ByteArrayInputStream bais=null;
        //read("cert.cer");
@@ -66,27 +72,48 @@ public static String cifrarBase64(String a){
 
         //TODO: Obtener los datos del DNIe
         ObtenerDatos od = new ObtenerDatos();
-       // String nif = od.LeerNIF();
-       String nif="Moreno Chicharro, Laura 26248707A" ;
+       String nif = od.LeerNIF();
+       
        String nif1[]= nif.split(" ");//Cuando hay un espacio coge la variable y la mete en un vector
        String nombre=nif1[2].substring(0,1);
        String ap1=nif1[0];//cogemos el apellido entero
        String ap2=nif1[1].substring(0,1);
-       String letraDni=nif1[3].substring(8);
-       String completo=nombre+ap1+ap2+letraDni;
+             
+       String nif2=nif1[3].substring(6);
+       nif2=nif2.trim();
+       System.out.println("Introduce la clave:");
+       Scanner in= new Scanner(System.in);
+       String clave=in.nextLine();
+       String completo=nombre+ap1+ap2+nif2+clave;
+      
        completo=completo.toLowerCase();
        
-       String hash= sha1(completo);
-       Strinf base64=base64(hash);
        
        
+        String hash= sha1(completo);
+       //String base64=base64(hash);
        
+       
+   
        System.out.println("NIF: "+completo);
-        System.out.println("Hash:"+hash);
-       System.out.println("Base64:"+base64);
+       
+       System.out.println("Hash:"+hash);
+      //System.out.println("Base64:"+base64);
         //TODO: Autenticarse en el servidor
         
-    
+    try{
+        URL url = new URL("https://localhost:");
+      URLConnection con = url.openConnection();
+ 
+      BufferedReader input = new BufferedReader(
+         new InputStreamReader(con.getInputStream()));
+ 
+      String linea;
+      while ((linea = input.readLine()) != null) {
+         System.out.println(linea);
     }
-
+    }catch(Exception e){
+        
+    }
+    }
 }

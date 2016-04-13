@@ -106,23 +106,22 @@ public class ObtenerDatos {
             if ((byte) datos[offset] == (byte) 0xA1) {
                 //El certificado empieza aquí
                 byte[] r3 = new byte[20];
-                byte[] r4 = new byte[50];
-                byte[] r5 = new byte[50];
+        
+                byte[] r5 = new byte[30];
      
                 
                 
                 //Nos posicionamos en el byte donde empieza el NIF y leemos sus 9 bytes
                 for (int z = 0; z < 9; z++) { //lee el dni
-                    r3[z] = datos[110 + z];
+                    r3[z] = datos[109 + z];
                 }
-                for (int z = 0; z < 20; z++) {
-                    r4[z] = datos[140 + z];
+               
+                
+                for (int z = 0; z < 24; z++) {
+                    r5[z] = datos[162 + z];
                 }
-                for (int z = 0; z < 40; z++) {
-                    r5[z] = datos[160 + z];
-                }
-                nombre= new String(r4) + new String(r5);
-                completName = new String(r3);
+                nombre= new String(r5)+ new String(r3);
+                
             }
         }
         return nombre;
