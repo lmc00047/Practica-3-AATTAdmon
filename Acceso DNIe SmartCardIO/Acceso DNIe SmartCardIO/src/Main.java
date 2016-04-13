@@ -21,6 +21,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 import org.bouncycastle.util.encoders.Base64;
 
+
 //import java.util.logging.Formatter;
 //import java.util.logging.LogRecord;
 
@@ -71,9 +72,9 @@ public class Main {
         //bais = new ByteArrayInputStream(value);
 
         //TODO: Obtener los datos del DNIe
-        ObtenerDatos od = new ObtenerDatos();
+       ObtenerDatos od = new ObtenerDatos();
        String nif = od.LeerNIF();
-       
+   
        String nif1[]= nif.split(" ");//Cuando hay un espacio coge la variable y la mete en un vector
        String nombre=nif1[2].substring(0,1);
        String ap1=nif1[0];//cogemos el apellido entero
@@ -102,7 +103,7 @@ public class Main {
         //TODO: Autenticarse en el servidor
         
     try{
-        URL url = new URL("https://localhost:");
+        URL url = new URL("https://localhost:autenticaMac?datosdebase64");
       URLConnection con = url.openConnection();
  
       BufferedReader input = new BufferedReader(

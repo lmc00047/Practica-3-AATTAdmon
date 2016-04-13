@@ -20,16 +20,16 @@
             <h3>Usuarios registrados</h3>
             <ul>
                 <?php
-                $link = mysql_connect('localhost:3306', 'root', '1234') or die('No se puede conectar con el servidor');
+                $link = mysqli_connect('localhost:3306', 'root', '1234') or die('No se puede conectar con el servidor');
                 if (!$link) {
-                    die('Could not connect to MySQL: ' . mysql_error());
+                    die('Could not connect to MySQL: ' . mysqli_error());
                 }
 
-                mysql_select_db('dniauth', $link) or die('No se puede conectar con la base de datos');
+                mysqli_select_db('dniauth', $link) or die('No se puede conectar con la base de datos');
 
                 $sql = "SELECT * FROM users";
-                $resultado = mysql_query($sql);
-                while ($row = mysql_fetch_assoc($resultado)) {
+                $resultado = mysqli_query($sql);
+                while ($row = mysqli_fetch_assoc($resultado)) {
 
                     echo "<li>" . $row["user"] . " " . $row["dni"] . "</li>";
                 }
