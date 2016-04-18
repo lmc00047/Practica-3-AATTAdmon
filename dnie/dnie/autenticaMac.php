@@ -11,12 +11,19 @@ $recepcion = filter_input(INPUT_GET, 'datos', FILTER_SANITIZE_STRING);//todo lo 
 
 
 //acceso a base de datos
-$link = mysqli_connect('localhost:3306', 'root', '1234') or die('No se puede conectar con el servidor'); //consulta a la base de datos
+
+                $link = mysqli_connect('localhost:3306', 'root', '1234') or die('No se puede conectar con el servidor');
                 if (!$link) {
                     die('Could not connect to MySQL: ' . mysqli_error());
                 }
 
                 mysqli_select_db('dniauth', $link) or die('No se puede conectar con la base de datos');
 
+                $sql = "SELECT * FROM users";
+                $resultado = mysqli_query($sql);
+                while ($row = mysqli_fetch_assoc($resultado)) {
 
+                    echo "<li>" . $row["user"] . " " . $row["dni"] . "</li>";
+                }
+                
 //comprobacion de hash

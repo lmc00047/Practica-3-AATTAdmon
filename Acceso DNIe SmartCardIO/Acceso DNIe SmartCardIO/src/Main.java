@@ -55,14 +55,19 @@ public class Main {
         return sb.toString();
     }
 
-//public static String cifrarBase64(String a){
-      // Base64 encoder = Base64.getEncoder();
-      //  String b = encoder.encodeToString(a.getBytes(StandardCharsets.UTF_8) );        
-      //  return b;
-   // }
+     // public static String Base64(String a){
+     //Base64.Encoder encoder = Base64.getEncoder();
+       // String b = encoder.encodeToString(a.getBytes(StandardCharsets.UTF_8) );        
+        //return b;
+    //}
+ 
+
     public static void main(String[] args) throws Exception{
         //ByteArrayInputStream bais=null;
        //read("cert.cer");
+       
+       
+  
        
        //FileInputStream fis = new FileInputStream("cert.cer");
       
