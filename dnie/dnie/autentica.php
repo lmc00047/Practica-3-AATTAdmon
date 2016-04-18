@@ -50,15 +50,15 @@
 			//tenemos que usar un solo metodo de http-get o post-
 			//Donde tenemos que hacer el hash y comprobar que coincide con el hash que se ha enviado con uno de los parametros. si coincide entra y sino no entra.
             
-             $link = mysqli_connect('localhost:3306', 'root', '1234') or die('No se puede conectar con el servidor'); //consulta a la base de datos
+             $link = mysqli_connect('localhost:3306', 'root') or die('No se puede conectar con el servidor'); //consulta a la base de datos
                 if (!$link) {
-                    die('Could not connect to MySQL: ' . mysqli_error());
+                    die('Could not connect to MySQL: ' . mysql_error());
                 }
 
-                mysqli_select_db('dniauth', $link) or die('No se puede conectar con la base de datos');
+                mysqli_select_db($link,'dniauth') or die('No se puede conectar con la base de datos');
 
                 $sql = "SELECT * FROM users";
-                $resultado = mysqli_query($sql);
+                $resultado = mysqli_query($link,$sql);
                 while ($row = mysqli_fetch_assoc($resultado)) {
 
                     if($row["user"]==$user && $row["dni"]==$dni && $row["password"]==$password)// . " " . $row["dni"] . "</li>";

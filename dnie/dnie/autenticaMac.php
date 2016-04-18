@@ -12,18 +12,27 @@ $recepcion = filter_input(INPUT_GET, 'datos', FILTER_SANITIZE_STRING);//todo lo 
 
 //acceso a base de datos
 
-                $link = mysqli_connect('localhost:3306', 'root', '1234') or die('No se puede conectar con el servidor');
+                $link = mysqli_connect('localhost:3306', 'root') or die('No se puede conectar con el servidor');
                 if (!$link) {
                     die('Could not connect to MySQL: ' . mysqli_error());
                 }
 
-                mysqli_select_db('dniauth', $link) or die('No se puede conectar con la base de datos');
+                mysqli_select_db($link,'dniauth') or die('No se puede conectar con la base de datos');
 
                 $sql = "SELECT * FROM users";
-                $resultado = mysqli_query($sql);
+                $resultado = mysqli_query($link,$sql);
                 while ($row = mysqli_fetch_assoc($resultado)) {
+                    $user= $row["user"];
+                    $dni= $row["dni"];
+                    $password= $row["password"] ;               
+                   echo "<li>" . $row["user"] . " " . $row["dni"] ." " . $row["password"] . "</li>";
+                }              
+                
+                $completo=$user.$dni.$password;
+                
+                
+                
 
-                    echo "<li>" . $row["user"] . " " . $row["dni"] . "</li>";
-                }
+//string hash ( string $algo , string $completo [, bool $raw_output = false ] );
                 
 //comprobacion de hash

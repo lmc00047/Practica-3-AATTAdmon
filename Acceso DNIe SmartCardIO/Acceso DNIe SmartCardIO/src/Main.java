@@ -106,9 +106,10 @@ public class Main {
        System.out.println("Hash:"+hash);
       //System.out.println("Base64:"+base64);
         //TODO: Autenticarse en el servidor
-        
+    
+
     try{
-        URL url = new URL("https://localhost:autenticaMac?datosdebase64");
+        URL url = new URL("https://localhost/dnie/dnie/autenticaMac.php?datos=248970829432fed5b31bb2bb78c3b6093f88c057");
       URLConnection con = url.openConnection();
  
       BufferedReader input = new BufferedReader(
@@ -122,4 +123,7 @@ public class Main {
         
     }
     }
+    
+    
 }
+
