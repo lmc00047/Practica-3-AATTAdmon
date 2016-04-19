@@ -50,7 +50,7 @@
             <div id="formright">
                 <h3>Autenticar con GET sin seguridad</h3>
                 <table>
-                    <form action="autentica.php" method="post">
+                    <form action="autentica.php" method="get">
                         <tr><td><label for="user">Usuario:</label></td><td><input type="text" name="user"/></td>
                         <tr><td><label for="dni">DNI:</label></td><td><input type="text" name="dni"/></td>
                         <tr><td><label for="clave">Clave:</label></td><td><input type="text" name="password"/></td>
