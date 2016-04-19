@@ -7,7 +7,7 @@
  */
 
 //recepcion de datos 
-$recepcion = filter_input(INPUT_GET, 'datos', FILTER_SANITIZE_STRING);//todo lo que venga como datos lo guardamos en la variable recepcion
+$datos = filter_input(INPUT_GET, 'datos', FILTER_SANITIZE_STRING);//todo lo que venga como datos lo guardamos en la variable recepcion
 
 
 //acceso a base de datos
@@ -29,10 +29,17 @@ $recepcion = filter_input(INPUT_GET, 'datos', FILTER_SANITIZE_STRING);//todo lo 
                 }              
                 
                 $completo=$user.$dni.$password;
+           
                 
                 
                 
-
-//string hash ( string $algo , string $completo [, bool $raw_output = false ] );
                 
 //comprobacion de hash
+echo sha1($completo);
+echo $datos;
+if (sha1($completo) == $datos)
+  //{
+  echo "<br>¡Bienvenido, ha entrado correctamente!";
+  //}
+exit;
+  

@@ -37,9 +37,9 @@
             </ul>
             </div>
             <div id="formright">
-                <h3>Autenticar con GET</h3>
+                <h3>Autenticar con GET con seguridad</h3>
                 <table>
-                    <form action="autentica.php" method="get">
+                    <form action="autenticaMac.php" method="get">
                         <tr><td><label for="user">Usuario:</label></td><td><input type="text" name="user"/></td>
                         <tr><td><label for="dni">DNI:</label></td><td><input type="text" name="dni"/></td>
                         <tr><td><label for="clave">Clave:</label></td><td><input type="text" name="password"/></td>
@@ -48,7 +48,7 @@
                 </table>
             </div>
             <div id="formright">
-                <h3>Autenticar con POST</h3>
+                <h3>Autenticar con GET sin seguridad</h3>
                 <table>
                     <form action="autentica.php" method="post">
                         <tr><td><label for="user">Usuario:</label></td><td><input type="text" name="user"/></td>

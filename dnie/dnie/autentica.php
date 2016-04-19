@@ -30,7 +30,7 @@
                 
                 if($dni==NULL)
                 ?>
-                <h3>Autenticando mediante POST</h3>
+                <h3>Autenticando mediante GET sin seguridad</h3>
                 <?php
                 
             } else {
