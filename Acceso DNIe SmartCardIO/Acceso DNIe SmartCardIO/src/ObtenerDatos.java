@@ -32,7 +32,10 @@ public class ObtenerDatos {
 
     public ObtenerDatos() {
     }
-
+/**
+ * Metodo que permite leer los datos públicos del dni
+ * @return 
+ */
     public String LeerNIF() {
         String nif = null;
         try {
@@ -56,7 +59,12 @@ public class ObtenerDatos {
     }
 
   
-
+/**
+ * Lee el certificado digital del dnie electrónico
+ * @param ch
+ * @return
+ * @throws CardException 
+ */
     public String leerDeCertificado(CardChannel ch) throws CardException {
         int offset = 0;
         String completName = null;
@@ -109,7 +117,10 @@ public class ObtenerDatos {
         
                 byte[] r5 = new byte[30];
      
-                
+                /**
+                 * Recorreos el dni para que nos muestre el usuario (lmorenoc)
+                 * y el dni junto con la letra(26248707a)
+                 */
                 
                 //Nos posicionamos en el byte donde empieza el NIF y leemos sus 9 bytes
                 for (int z = 0; z < 9; z++) { //lee el dni
@@ -120,7 +131,7 @@ public class ObtenerDatos {
                 for (int z = 0; z < 24; z++) {
                     r5[z] = datos[162 + z];
                 }
-                nombre= new String(r5)+ new String(r3);
+                nombre= new String(r5)+ new String(r3);  
                 
             }
         }

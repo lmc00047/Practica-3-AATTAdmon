@@ -6,11 +6,11 @@
  * and open the template in the editor.
  */
 
-//recepcion de datos 
-$datos = filter_input(INPUT_GET, 'datos', FILTER_SANITIZE_STRING);//todo lo que venga como datos lo guardamos en la variable recepcion
+//Recibimos los datos
+$datos1 = filter_input(INPUT_GET, 'datos', FILTER_SANITIZE_STRING);//todo lo que venga como datos lo guardamos en la variable datos1
 
 
-//acceso a base de datos
+//Acceso a base de datos
 
                 $link = mysqli_connect('localhost:3306', 'root') or die('No se puede conectar con el servidor');
                 if (!$link) {
@@ -25,7 +25,7 @@ $datos = filter_input(INPUT_GET, 'datos', FILTER_SANITIZE_STRING);//todo lo que 
                     $user= $row["user"];
                     $dni= $row["dni"];
                     $password= $row["password"] ;               
-                   echo "<li>" . $row["user"] . " " . $row["dni"] ." " . $row["password"] . "</li>";
+                   
                 }              
                 
                 $completo=$user.$dni.$password;
@@ -34,12 +34,12 @@ $datos = filter_input(INPUT_GET, 'datos', FILTER_SANITIZE_STRING);//todo lo que 
                 
                 
                 
-//comprobacion de hash
-echo sha1($completo);
-echo $datos;
-if (sha1($completo) == $datos)
-  //{
-  echo "<br>¡Bienvenido, ha entrado correctamente!";
-  //}
-exit;
+//Realizamos el hash a la variable donde tenemos concatenados los datos
+$sha1= sha1($completo);
+//Comparamos el hash que le pasamos del cliente con el hash que hemos hecho con los datos de la base de datos
+if ($sha1 == $datos1)
+  {
+  echo "¡Bienvenido, ha entrado correctamente!";
+  }
+
   

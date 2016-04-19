@@ -38,7 +38,7 @@ public class Main {
      */
     /**
      * Es el método encargado de proporcionarnos la función hash y con ello 
-     * encriptar la información que mandamos, en nuestro caso encriptamos el usuario, el dni y la contraseña.
+     * codificar la información que mandamos, en nuestro caso codificamos el usuario, el dni y la contraseña.
      * @param input
      * @return
      * @throws NoSuchAlgorithmException 
@@ -71,7 +71,7 @@ public class Main {
         //TODO: Obtener los datos del DNIe
        ObtenerDatos od = new ObtenerDatos();
        String nif = od.LeerNIF();
-   
+       // String nif="Moreno Chicharro, Laura 26248707a";
        String nif1[]= nif.split(" ");           //Cuando hay un espacio coge la variable y la mete en un vector
        String nombre=nif1[2].substring(0,1);    //Coge la primera letra del numbre
        String ap1=nif1[0];                      //cogemos el primer apellido entero
@@ -104,7 +104,7 @@ public class Main {
  * Este código permite hacer la conexión 
  */
     try{
-        URL url = new URL("https://localhost/dnie/dnie/autenticaMac.php?datos=248970829432fed5b31bb2bb78c3b6093f88c057");
+        URL url = new URL("http://localhost/dnie/dnie/autenticaMac.php?datos="+hash);
       URLConnection con = url.openConnection();
  
       BufferedReader input = new BufferedReader(
