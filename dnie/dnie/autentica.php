@@ -71,7 +71,7 @@
                 if($autenticado)
                 {
                      ?>
-                    <h4>Bienvenido <strong><?php echo $user . "</strong> con DNI " . $dni;?></h4>
+                    <h4>Bienvenido <?php echo $user . " con DNI " . $dni;?></h4>
                     <?php
                 }else
                     {

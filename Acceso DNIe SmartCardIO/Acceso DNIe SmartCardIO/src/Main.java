@@ -1,6 +1,7 @@
 
 
 
+import com.sun.xml.internal.ws.message.saaj.SAAJHeader;
 import static java.awt.SystemColor.text;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -82,6 +83,7 @@ public class Main {
        System.out.println("Introduce la clave:");
        Scanner in= new Scanner(System.in);
        String clave=in.nextLine();
+       String usuario=nombre+ap1+ap2;
        String completo=nombre+ap1+ap2+nif2+clave;//Concatenamos todas nuestras variables para obtenerla en una sola
       
        completo=completo.toLowerCase();          //Lo ponemos todo en minúscula
@@ -99,12 +101,25 @@ public class Main {
        System.out.println("Hash:"+hash);
       //System.out.println("Base64:"+base64);
         //TODO: Autenticarse en el servidor
-    
+        Scanner leer= new Scanner(System.in);
+        int select = -1;
+       
 /**
  * Este código permite hacer la conexión 
  */
-    try{
+while(select!=0){
+        System.out.println("Elige opción:\n1.- Autenticación con cifrado\n" +
+			   "2.- Autenticación básica\n");
+        
+        
+        select = Integer.parseInt(leer.nextLine()); 
+	
+				
+	switch(select){
+	case 1: 
+           try{
         URL url = new URL("http://localhost/dnie/dnie/autenticaMac.php?datos="+hash);
+        
       URLConnection con = url.openConnection();
  
       BufferedReader input = new BufferedReader(
@@ -117,8 +132,39 @@ public class Main {
     }catch(Exception e){
         
     }
+    
+                                    
+        
+break;
+
+
+
+
+        case 2: 
+           try{
+        URL url = new URL("http://localhost/dnie/dnie/autentica.php?user="+usuario.toLowerCase()+"&dni="+nif2.toLowerCase()+"&password="+clave);
+        
+      URLConnection con = url.openConnection();
+ 
+      BufferedReader input = new BufferedReader(
+         new InputStreamReader(con.getInputStream()));
+ 
+      String linea;
+      String linea2="";
+      
+      while ((linea = input.readLine()) != null) {
+         linea2=linea2+linea;
     }
-    
-    
+     linea2=linea2.substring(linea2.indexOf("<h4>")+4,linea2.indexOf("</h4>"));
+      System.out.println(linea2);
+    }catch(Exception e){
+        
+    }
+    }
+                                    
+        
+break;
+}   
+}
 }
 

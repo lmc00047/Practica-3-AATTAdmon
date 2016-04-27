@@ -1,20 +1,4 @@
-<html>
-    <head>
-        <title>Autenticaci&oacute;n con DNIe</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-    </head>
 
-    <body>
-        <div id='banner'>
-            
-              <h2>Pr&aacute;ctica 3. Implementación de un servicio b&aacute;sico de autenticaci&oacute;n con DNIe</h2>
-            <h3>Autenticación con datos públicos del DNIe</h3>
-
-        </div>
-        <div id='main'>
-            </html>
             
 <?php
 /* 
@@ -66,14 +50,4 @@ if ($sha1 == $datos1)
   
 ?>
                    
-                            
-        </div>
-        <div id="foot">
-             <a href="index.php">Volver</a>
-               <h2>Aplicaciones Telemáticas para la Administración</h2>
-            <p>Grado en Ingenier&iacute;a Telem&aacute;tica y Grado en Ingenier&iacute;a de Tecnolog&iacute;as de Telecomunicaci&oacute;n</p>
-            <p>DEPARTAMENTO DE INGENIERÍA DE TELECOMUNICACIÓN</p>
-
-        </div>
-    </body>
-</html>
+ 
